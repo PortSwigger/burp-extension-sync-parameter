@@ -16,6 +16,8 @@ Sync Parameter is an extension to Burp Suite that provides a sync function for C
 
   * Name - Target request parameter name.
   
+  * Name(Req) - Target request parameter name. (You DO NOT NEED to set Name(Req) when request parameter name you want to sync is the same as name attribute in response.)
+  
   * Value - You do not have to set this. This value will be automatically updated when synchronized.
 
 ## Sample Configuration

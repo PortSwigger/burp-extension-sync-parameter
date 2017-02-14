@@ -15,19 +15,20 @@ public class SyncTableModel extends AbstractTableModel implements TableModelList
 	private Object[][] tableData;
 	
 	/** Table Column Name */
-	private static final String[] columnNames = {"Enabled", "Host", "Name", "Value"};
+	private static final String[] COLUMN_NAMES = {"Enabled", "Host", "Name", "Name(Req)", "Value"};
 	
 	/** Table Row Count */
 	public static final int TABLE_ROW_COUNT = 10;
 	
 	/** Table Column Count */
-	public static final int TABLE_COLUMN_COUNT = 4;
+	public static final int TABLE_COLUMN_COUNT = 5;
 	
 	/** Table column index */
 	public static final int ENABLED_COLUMN_INDEX = 0;
 	public static final int HOST_COLUMN_INDEX = 1;
 	public static final int NAME_COLUMN_INDEX = 2;
-	public static final int VALUE_COLUMN_INDEX = 3;
+	public static final int NAME_REQ_COLUMN_INDEX = 3;
+	public static final int VALUE_COLUMN_INDEX = 4;
 	
 	public SyncTableModel() {
 		tableData = new Object[TABLE_ROW_COUNT][TABLE_COLUMN_COUNT];
@@ -68,7 +69,7 @@ public class SyncTableModel extends AbstractTableModel implements TableModelList
 
 	@Override
 	public String getColumnName(int columnIndex) {
-		return columnNames[columnIndex];
+		return COLUMN_NAMES[columnIndex];
 	}
 
 	@Override
@@ -98,10 +99,10 @@ public class SyncTableModel extends AbstractTableModel implements TableModelList
 		for(row = 0; row < TABLE_ROW_COUNT; row++) {
 			if((Boolean)tableData[row][ENABLED_COLUMN_INDEX]) {
 				if(tableData[row][HOST_COLUMN_INDEX].equals("")) {
-					message = columnNames[HOST_COLUMN_INDEX] + " is empty.";
+					message = COLUMN_NAMES[HOST_COLUMN_INDEX] + " is empty.";
 					break;
 				} else if(tableData[row][NAME_COLUMN_INDEX].equals("")) {
-					message = columnNames[NAME_COLUMN_INDEX] + " is empty.";
+					message = COLUMN_NAMES[NAME_COLUMN_INDEX] + " is empty.";
 					break;
 				}
 			}

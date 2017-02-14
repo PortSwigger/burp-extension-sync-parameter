@@ -43,6 +43,9 @@ public class SyncParameterTab extends JPanel implements MouseMotionListener, Mou
 	/** Table for Sync */
 	private JTable syncTable;
 
+	/** Note for Name(Req) */
+	private JLabel syncNameReqNoteLabel;
+	
 	/** Table Model */
 	private SyncTableModel tableModel;
 	
@@ -68,6 +71,7 @@ public class SyncParameterTab extends JPanel implements MouseMotionListener, Mou
 	boolean resizeFlg = false;
 
 	private SyncParameterTab() {
+		//render();
 	}
 	
 	public static SyncParameterTab getInstance() {
@@ -92,12 +96,15 @@ public class SyncParameterTab extends JPanel implements MouseMotionListener, Mou
 		syncCheckBox = new JCheckBox("Sync requests based on the following rules:");
 		tableModel = new SyncTableModel();
 		syncTable = new JTable(tableModel);
+		syncNameReqNoteLabel = new JLabel("Note: You DO NOT NEED to set Name(Req) when request parameter name you want to sync is the same as name attribute in response.");
+		syncNameReqNoteLabel.setFont(new Font("MS UI Gothic", Font.ITALIC, 13));
+		syncNameReqNoteLabel.setForeground(new Color(229, 137, 0));
 		
 		// first column size should be fixed.
 		syncTable.getColumnModel().getColumn(SyncTableModel.ENABLED_COLUMN_INDEX).setMinWidth(75);
-		syncTable.getColumnModel().getColumn(SyncTableModel.ENABLED_COLUMN_INDEX).setMaxWidth(75);
 		syncTable.getColumnModel().getColumn(SyncTableModel.HOST_COLUMN_INDEX).setPreferredWidth(150);
-		syncTable.getColumnModel().getColumn(SyncTableModel.NAME_COLUMN_INDEX).setPreferredWidth(300);
+		syncTable.getColumnModel().getColumn(SyncTableModel.NAME_COLUMN_INDEX).setPreferredWidth(150);
+		syncTable.getColumnModel().getColumn(SyncTableModel.NAME_REQ_COLUMN_INDEX).setPreferredWidth(150);
 		syncTable.getColumnModel().getColumn(SyncTableModel.VALUE_COLUMN_INDEX).setPreferredWidth(275);
 		
 		// Generating ScrollPane for Sync Table
@@ -116,13 +123,15 @@ public class SyncParameterTab extends JPanel implements MouseMotionListener, Mou
 		syncScrollPane.setLocation(SYNC_PANE_X, SYNC_PANE_Y);
 		syncScrollPane.setSize(SYNC_PANE_WIDTH, SYNC_PANE_HEIGHT);
 		triangleLabel.setBounds(SYNC_PANE_X + SYNC_PANE_WIDTH +5, SYNC_PANE_Y, 20, 110);
+		syncNameReqNoteLabel.setBounds(14, SYNC_PANE_Y + SYNC_PANE_HEIGHT + 10, 800 , 15);
 		
 		// add to pane
 		add(syncTitleLabel);
 		add(syncNoteLabel);
 		add(syncCheckBox);
 		add(syncScrollPane);
-		add(triangleLabel);	
+		add(triangleLabel);
+		add(syncNameReqNoteLabel);
 
 		// add event listener
 		addMouseMotionListener(this);

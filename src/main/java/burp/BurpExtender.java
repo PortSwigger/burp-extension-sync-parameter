@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +28,7 @@ public class BurpExtender implements IBurpExtender, IProxyListener, IHttpListene
 	public static final String EXTENSION_NAME = "Sync Parameter";
 
 	// Extension Version
-	public static final String VERSION_INFO = "1.0";
+	public static final String VERSION_INFO = "1.1";
 
 	// List of sync target list except Proxy.
 	public static final List<Integer> SYNC_TARGET_TOOL_LIST = Arrays.asList( IBurpExtenderCallbacks.TOOL_REPEATER,
@@ -175,12 +176,19 @@ public class BurpExtender implements IBurpExtender, IProxyListener, IHttpListene
 					// if sync parameter name is blank, continue loop.
 					if (syncParaName == null || syncParaName.equals(""))
 						continue;
+					
+					// if sync request parameter name is set, overwrite syncPara name with it.
+					String syncReqParaName = (String) tableModel.getValueAt(row, SyncTableModel.NAME_REQ_COLUMN_INDEX);
+					if(syncReqParaName != null && !syncReqParaName.equals("")){
+						syncParaName = syncReqParaName;
+					}
 
 					// Check all parameter.
 					for (IParameter para : paraList) {
 						// If parameter name is same as name of sync table record, update parameter.
-						if (para != null && para.getName().equals(syncParaName)) {
-							addParam = this.helpers.buildParameter(syncParaName,
+						//String urlDecodedName = URLDecoder.decode(para.getName(), encoding);
+						if (para != null && URLDecoder.decode(para.getName(), encoding).equals(syncParaName)) {
+							addParam = this.helpers.buildParameter(para.getName(),
 									URLEncoder.encode(syncParaValue, encoding), para.getType());
 							addParaList.add(addParam);
 							break;

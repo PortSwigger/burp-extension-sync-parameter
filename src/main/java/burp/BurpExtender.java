@@ -25,7 +25,7 @@ public class BurpExtender implements IBurpExtender, IProxyListener, IHttpListene
 	private PrintWriter stderr;
 
 	// Extension Name
-	public static final String EXTENSION_NAME = "Sync Parameter";
+	public static final String EXTENSION_NAME = "CSRF Token Tracker";
 
 	// Extension Version
 	public static final String VERSION_INFO = "1.1";
@@ -126,7 +126,7 @@ public class BurpExtender implements IBurpExtender, IProxyListener, IHttpListene
 
 	@Override
 	public String getTabCaption() {
-		return "CSRF Token Tracker";
+		return EXTENSION_NAME;
 	}
 
 	@Override

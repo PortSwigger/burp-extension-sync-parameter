@@ -2,7 +2,7 @@ Uuid: 61ddd8a0464544218dfd94114c910548
 ExtensionType: 1
 Name: CSRF Token Tracker
 RepoName: csrf-token-tracker
-ScreenVersion: 1.0
+ScreenVersion: 1.1
 SerialVersion: 3
 MinPlatformVersion: 0
 ProOnly: False

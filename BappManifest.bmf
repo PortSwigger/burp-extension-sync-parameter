@@ -6,7 +6,7 @@ ScreenVersion: 1.1
 SerialVersion: 4
 MinPlatformVersion: 0
 ProOnly: False
-Author: Teruhiro Tagomori
+Author: Teruhiro Tagomori@NRI SecureTechnologies
 ShortDescription: Provides a sync function for CSRF token parameters.
 EntryPoint: build/libs/sync-parameter-1.1.jar
 BuildCommand: gradle jar
